@@ -7,6 +7,7 @@
 
 class Tag {
 public:
+
     int NUM = 256,
         ID = 257,
         TRUE = 258,

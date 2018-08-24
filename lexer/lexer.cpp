@@ -52,7 +52,6 @@ Token* Lexer::scan() throw(exceptionNotADigit) {
                 } else {
                     throw exceptionNotADigit();
                 }
-                break;
         }
     }
     return new Token(tag.EndOF);

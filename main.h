@@ -7,5 +7,6 @@
 
 #include <iostream>
 #include "lexer/lexer.h"
+#include "parser/parser.h"
 
 #endif //COMPILADORES_MAIN_H

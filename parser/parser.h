@@ -6,6 +6,7 @@
 #define COMPILADORES_PARSER_H
 
 #include "../lexer/lexer.h"
+#include <iostream>
 
 class Parser {
 
@@ -13,12 +14,13 @@ private:
 
     Lexer* lxr = new Lexer(" ");
     Token* tkn;
+    Tag tagger;
 
     void move() throw(exceptionNotADigit);
 
     void match(int toBeTested) throw(exceptionNotADigit);
 
-    void term();
+    void term() throw(exceptionNotADigit,exceptionNotWhatExpected);
 
 public:
 
@@ -27,7 +29,7 @@ public:
         move();
     }
 
-    void expr();
+    void expr() throw(exceptionNotADigit,exceptionNotWhatExpected);
 
 };
 

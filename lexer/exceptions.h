@@ -25,10 +25,15 @@ public:
 };
 
 class exceptionNotWhatExpected : public std::exception {
+private:
+    std::string error;
 public:
-    virtual const std::string what(std::string fst, std::string snd) const throw()
+    exceptionNotWhatExpected (std::string fst, std::string snd) throw() : exception() {
+        error = "Wrong token, expected " + fst + ", but was given " + snd;
+    }
+    virtual const char* what() const throw() override
     {
-        return "Wrong token, expected " + fst + ", but was given " + snd;
+        return error.c_str();
     }
 };
 
