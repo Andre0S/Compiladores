@@ -11,7 +11,7 @@ public:
         ID = 257,
         TRUE = 258,
         FALSE = 259,
-        PLUS = 43,
+        OPERATOR = 43,
         MINUS = 45,
         EndOF = 263;
 };

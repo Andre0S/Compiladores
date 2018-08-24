@@ -6,8 +6,8 @@
 #define COMPILADORES_LEXER_H
 
 #include "num.h"
-#include "id.h"
-#include "exceptionNotADigit.h"
+#include "operator.h"
+#include "exceptions.h"
 #include <list>
 
 class Lexer {
@@ -34,11 +34,11 @@ public:
 
     int getColumn();
 
-    Token* scan();
+    Token* scan() throw(exceptionNotADigit);
 
-    Token* getNextToken();
+    Token* getNextToken() throw(exceptionNotADigit);
 
-    std::list<Token*> tokens();
+    std::list<Token*> tokens() throw(exceptionNotADigit);
 
 };
 

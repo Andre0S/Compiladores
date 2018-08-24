@@ -12,7 +12,7 @@ int Lexer::getColumn() {
     return column;
 };
 
-Token* Lexer::scan() {
+Token* Lexer::scan() throw(exceptionNotADigit) {
     while (position < inputLength) {
         peek = input[position];
 
@@ -30,11 +30,11 @@ Token* Lexer::scan() {
             case '+':
                 position++;
                 column++;
-                return new Id("+",tag);
+                return new Operator("+",tag);
             case '-':
                 position++;
                 column++;
-                return new Id("-",tag);
+                return new Operator("-",tag);
             default:
                 if (isdigit(peek)) {
                     std::string auxiliar;
@@ -50,7 +50,7 @@ Token* Lexer::scan() {
                     } while (isdigit(peek));
                     return new Num(std::stoi(auxiliar),tag);
                 } else {
-                    throw new exceptionNotADigit;
+                    throw exceptionNotADigit();
                 }
                 break;
         }
@@ -58,22 +58,14 @@ Token* Lexer::scan() {
     return new Token(tag.EndOF);
 };
 
-Token* Lexer::getNextToken() {
-    try {
-        return scan();
-    } catch (exceptionNotADigit e) {
-        throw e;
-    }
+Token* Lexer::getNextToken() throw(exceptionNotADigit){
+    return scan();
 };
 
-std::list<Token*> Lexer::tokens() {
+std::list<Token*> Lexer::tokens() throw(exceptionNotADigit){
     std::list<Token*> returner;
-    try {
-        for (Token* tkn = getNextToken(); (*tkn).tag != tag.EndOF; tkn = getNextToken()) {
-            returner.push_back(tkn);
-        }
-    } catch (exceptionNotADigit e) {
-        throw e;
+    for (Token* tkn = getNextToken(); (*tkn).tag != tag.EndOF; tkn = getNextToken()) {
+        returner.push_back(tkn);
     }
     position = 0;
     column =0;

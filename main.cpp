@@ -1,7 +1,7 @@
 #include "main.h"
 
 int main() {
-    std::string code = "12 + 3 +25 -45";
+    std::string code = "12 + 3 +25 -45 a";
     Lexer lexer(code);
     try {
         std::list<Token*> toPrint = lexer.tokens();
@@ -10,7 +10,7 @@ int main() {
             toPrint.pop_front();
         }
     } catch (exceptionNotADigit e) {
-        std::cout << "There is a non digit!" << std::endl;
+        std::cout << e.what() << std::endl;
     }
     return 0;
 }

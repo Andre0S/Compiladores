@@ -8,13 +8,13 @@
 #include "token.h"
 #include "tag.h"
 
-class Id : public Token {
+class Operator : public Token {
 
 public:
 
     std::string value;
 
-    Id(std::string valor, Tag dictionary) : Token(dictionary.ID) {
+    Operator(std::string valor, Tag dictionary) : Token(dictionary.OPERATOR) {
         value = valor;
     }
 
